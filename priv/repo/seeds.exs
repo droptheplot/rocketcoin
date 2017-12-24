@@ -1,11 +1,5 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Rocketcoin.Repo.insert!(%Rocketcoin.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias Rocketcoin.Market
+
+Market.create_currency(%{name: "Bitcoin", code: "BTC"})
+Market.create_currency(%{name: "Bitcoin Cash", code: "BCH"})
+Market.create_currency(%{name: "Ethereum", code: "ETH"})
