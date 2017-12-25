@@ -22,6 +22,7 @@ defmodule Rocketcoin.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Rocketcoin.DataCase
+      import Rocketcoin.Factory
     end
   end
 

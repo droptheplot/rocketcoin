@@ -14,6 +14,7 @@ defmodule Rocketcoin.Application do
       supervisor(RocketcoinWeb.Endpoint, []),
       # Start your own worker by calling: Rocketcoin.Worker.start_link(arg1, arg2, arg3)
       # worker(Rocketcoin.Worker, [arg1, arg2, arg3]),
+      worker(Rocketcoin.Market.Worker, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -56,3 +56,6 @@ config :rocketcoin, Rocketcoin.Repo,
   database: "rocketcoin_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :rocketcoin, :syncer_source, Rocketcoin.Source.CryptoCompare
+config :rocketcoin, :currency_code, "USD"

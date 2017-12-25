@@ -17,3 +17,6 @@ config :rocketcoin, Rocketcoin.Repo,
   database: "rocketcoin_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :rocketcoin, :syncer_source, Rocketcoin.Test.Source
+config :rocketcoin, :currency_code, "USD"
