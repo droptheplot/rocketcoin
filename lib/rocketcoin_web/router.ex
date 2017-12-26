@@ -19,8 +19,11 @@ defmodule RocketcoinWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", RocketcoinWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", RocketcoinWeb.Api do
+    pipe_through :api
+
+    scope "/v1", V1 do
+      get "/currencies/calc", CurrencyController, :calc
+    end
+  end
 end
