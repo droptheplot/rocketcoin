@@ -14,4 +14,11 @@ defmodule Rocketcoin.Factory do
       code: sequence(:code, &"#{&1}C")
     }
   end
+
+  def rate_factory do
+    %Rate{
+      price: 100,
+      currency: build(:currency)
+    }
+  end
 end
