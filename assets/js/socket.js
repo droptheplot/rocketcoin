@@ -78,7 +78,7 @@ timestampForm.addEventListener("submit", function(e) {
 }, false);
 
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("ok", resp => { console.log("Joined successfully", resp); channel.push("refresh", {timestamp: null}) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket
