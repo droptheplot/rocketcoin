@@ -56,6 +56,8 @@ socket.connect()
 // Now that you are connected, you can join channels with a topic:
 let channel = socket.channel("rates", {})
 let ratesTable = document.querySelector("#rates")
+let timestampForm = document.querySelector("#timestamp")
+let timestampInput = document.querySelector("#timestamp-value")
 
 channel.on("new_rate", payload => {
   ratesTable.innerHTML = "<tr>";
@@ -68,6 +70,12 @@ channel.on("new_rate", payload => {
 
   ratesTable.innerHTML += "</tr>";
 })
+
+timestampForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  channel.push("refresh", {timestamp: timestampInput.value})
+}, false);
 
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })

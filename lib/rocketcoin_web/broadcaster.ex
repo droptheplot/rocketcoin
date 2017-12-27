@@ -3,8 +3,8 @@ defmodule RocketcoinWeb.Broadcaster do
 
   alias Rocketcoin.Market
 
-  def call() do
-    rates = Market.get_actual_rates(nil)
+  def call(timestamp \\ nil) do
+    rates = Market.get_actual_rates(timestamp)
     |> Enum.map(&to_json/1)
 
     Endpoint.broadcast("rates", "new_rate", %{rates: rates})
