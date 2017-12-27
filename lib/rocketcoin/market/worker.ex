@@ -23,6 +23,6 @@ defmodule Rocketcoin.Market.Worker do
   end
 
   defp schedule_sync() do
-    Process.send_after(self(), :sync, 1000 * 3)
+    Process.send_after(self(), :sync, 1000 * 60)
   end
 end
