@@ -22,11 +22,19 @@ defmodule Rocketcoin.Market.Rate do
     |> validate_required([:price])
   end
 
-  def actual(query \\ __MODULE__, code) do
+  def actual(query, code) do
     from q in query,
       join: c in Currency, where: c.id == q.currency_id, where: c.code == ^code,
       order_by: [desc: q.inserted_at],
       limit: 1
+  end
+
+  def actual(query) do
+    from q in query,
+      join: c in Currency, where: c.id == q.currency_id,
+      order_by: [desc: q.inserted_at],
+      distinct: c.code,
+      preload: :currency
   end
 
   def after_timestamp(query, nil), do: query

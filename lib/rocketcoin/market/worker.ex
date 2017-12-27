@@ -1,7 +1,9 @@
 defmodule Rocketcoin.Market.Worker do
   use GenServer
 
+  alias Rocketcoin.Market
   alias Rocketcoin.Market.Syncer
+  alias RocketcoinWeb.Broadcaster
 
   def start_link do
     GenServer.start_link(__MODULE__, %{})
@@ -14,12 +16,13 @@ defmodule Rocketcoin.Market.Worker do
 
   def handle_info(:sync, state) do
     Syncer.call()
+    Broadcaster.call()
 
     schedule_sync()
     {:noreply, state}
   end
 
   defp schedule_sync() do
-    Process.send_after(self(), :sync, 1000)
+    Process.send_after(self(), :sync, 1000 * 3)
   end
 end

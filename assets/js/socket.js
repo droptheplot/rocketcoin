@@ -54,7 +54,21 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("rates", {})
+let ratesTable = document.querySelector("#rates")
+
+channel.on("new_rate", payload => {
+  ratesTable.innerHTML = "<tr>";
+
+  for (let rate of payload.rates) {
+    ratesTable.innerHTML += "<td>"+rate.name+"</td>"+
+      "<td>"+rate.code+"</td>"+
+      "<td>"+rate.price / 100+" USD</td>";
+  }
+
+  ratesTable.innerHTML += "</tr>";
+})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })

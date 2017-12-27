@@ -2,7 +2,7 @@ defmodule RocketcoinWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", RocketcoinWeb.RoomChannel
+  channel "rates", RocketcoinWeb.RateChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

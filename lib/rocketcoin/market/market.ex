@@ -18,6 +18,13 @@ defmodule Rocketcoin.Market do
     |> Repo.one
   end
 
+  def get_actual_rates(timestamp) do
+    Rate
+    |> Rate.actual()
+    |> Rate.after_timestamp(timestamp)
+    |> Repo.all
+  end
+
   def create_rates(rates \\ []) do
     Repo.insert_all(Rate, rates)
   end
